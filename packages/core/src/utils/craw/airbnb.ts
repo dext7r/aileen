@@ -1,6 +1,8 @@
+import path from 'node:path'
 import { evConfig } from '@/config'
-import { CrawlHooksOptions, CrawlHooksCallback, CrawlHooks, CrawlPageResult } from '@/hooks'
-import path from 'path'
+import type { CrawlHooksCallback, CrawlHooksOptions, CrawlPageResult } from '@/hooks'
+import { useXcrawl } from '@/hooks'
+
 const storeDirs = path.join(evConfig.store.storeDirs ?? __dirname, 'upload')
 
 const options: CrawlHooksOptions = {
@@ -21,5 +23,5 @@ const callback: CrawlHooksCallback = (count, stopPolling, results) => {
 }
 
 export async function crawlAirbnb(): Promise<CrawlPageResult[]> {
-  return await CrawlHooks(options, callback)
+  return await useXcrawl(options, callback)
 }

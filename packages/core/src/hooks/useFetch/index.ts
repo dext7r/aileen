@@ -1,14 +1,13 @@
-import { RequestHooks } from '@/hooks'
-import { AxiosRequestConfig } from 'axios'
+import path from 'node:path'
+import type { AxiosRequestConfig } from 'axios'
 import fs from 'fs-extra'
-import path from 'path'
+import { useRequest } from '@/hooks'
 import { evConfig } from '@/config'
-import logger from '../logger'
-import { baiduFetch } from '@/utils'
+import { logger } from '@/utils'
 
-export async function fetchData(url: string, options?: AxiosRequestConfig): Promise<any> {
+export async function useFetch(url: string, options?: AxiosRequestConfig): Promise<any> {
   try {
-    const data = await RequestHooks(url)
+    const data = await useRequest(url, options)
     const filePath = path.join(evConfig.store.storeDirs ?? __dirname, 'baiduFetch.json')
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2))
     if (evConfig.log.isLog) logger.info(url)

@@ -1,7 +1,8 @@
+import type { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import merge from 'lodash-es/merge'
-import { AxiosRequestConfig } from 'axios'
-import { HttpInstance } from '@/index.d'
+import type { HttpInstance } from '@/index.d'
+
 function extractOrigin(url: string): string {
   const urlObject = new URL(url)
   return `${urlObject.protocol}//${urlObject.host}`
@@ -23,7 +24,7 @@ const defaultOptions: AxiosRequestConfig = {
   },
 }
 
-export const RequestHooks: HttpInstance = async (url, options = {}) => {
+export const useRequest: HttpInstance = async (url, options = {}) => {
   const mergedOptions: AxiosRequestConfig = merge({}, defaultOptions, options)
   mergedOptions.headers = mergedOptions.headers || {}
   mergedOptions.headers.origin = extractOrigin(url)

@@ -1,11 +1,11 @@
 import xCrawl from 'x-crawl'
 
-export type CrawlPageResult = {
+export interface CrawlPageResult {
   id: number
   urls: string[]
 }
 
-export type CrawlHooksOptions = {
+export interface CrawlHooksOptions {
   maxRetry: number
   intervalTime: { max: number; min: number }
   targets: string[]
@@ -24,10 +24,10 @@ export type CrawlHooksCallback = (
   results?: CrawlPageResult[],
 ) => void
 
-export const CrawlHooks = async (
+export async function useXcrawl(
   options: CrawlHooksOptions,
   callback: CrawlHooksCallback,
-): Promise<CrawlPageResult[]> => {
+): Promise<CrawlPageResult[]> {
   const { targets, viewport, storeDirs } = options
   const results: CrawlPageResult[] = []
 

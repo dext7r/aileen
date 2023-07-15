@@ -1,7 +1,7 @@
-import { fetchData } from './fetchData'
+import { useFetch } from '@/hooks'
 
 export async function baiduFetch(url: string, Cookie?: string) {
-  return await fetchData(url, {
+  return await useFetch(url, {
     headers: {
       Cookie,
     },

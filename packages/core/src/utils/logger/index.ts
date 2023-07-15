@@ -50,7 +50,7 @@ log4js.configure({
   },
 })
 
-const logger = log4js.getLogger()
+export const logger = log4js.getLogger()
 
 // Custom layout for colored log output
 log4js.addLayout('coloredLayout', (config: Layout): ((logEvent: LoggingEvent) => string) => {
