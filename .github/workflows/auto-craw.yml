@@ -27,16 +27,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 16.x
+      - name: Use Node.js 16.x 🚀
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: Install pnpm
+      - name: Install pnpm 🚀
         uses: pnpm/action-setup@v2
         with:
           version: 7
           run_install: false
-      - name: Install dependencies
+      - name: Install dependencies 🚀
         run: pnpm install
       - name: run script
         env:
@@ -44,8 +44,8 @@ jobs:
           storeDir: ./
         run: |
           cd packages/core
-          pnpm run start
-      - name: 更新数据
+          pnpm run dev
+      - name: update  🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: main
