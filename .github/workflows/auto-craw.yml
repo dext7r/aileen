@@ -46,6 +46,7 @@ jobs:
       - name: Install dependencies 🚀
         run: pnpm install
       - name: Build 🏗️
+        id: build
         run: |
           cd packages/core
           echo "🚀 Building..."
@@ -56,11 +57,10 @@ jobs:
           cd packages/core
           echo "🔥 Running crawlAirbnb..."
           node ./dist/index.cjs crawlAirbnb
-        needs: Build
-        if: needs.Build.result == 'success'
+        if: ${{ needs.build.result == 'success' }}
       - name: Update 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: main
           folder: .
-        if: env.update == 'true' && success()
+        if: ${{ env.update == 'true' && needs.build.result == 'success' }}

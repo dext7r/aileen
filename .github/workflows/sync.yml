@@ -1,4 +1,4 @@
-workflows/sync.ymlname: Upstream Sync
+name: Upstream Sync
 
 permissions:
   contents: write
@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: '0 0 * * *' # every day
   workflow_dispatch:
+    inputs:
+      timeoutStr:
+        description: Timeout duration
+        required: false
+        default: '30'
 
 jobs:
   sync_latest_from_upstream:
