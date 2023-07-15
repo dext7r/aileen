@@ -5,21 +5,21 @@ on:
   watch:
     types: [starred]
   schedule:
-    # 执行两次 避免偶尔执行失败的情况出现
-    - cron: '15 22 * * *'
     - cron: '30 23 * * *'
   push:
     branches:
       - main
       - master
 
-env:
-  update: ${{ secrets.update }}
-
+  workflow_dispatch:
+    inputs:
+      update:
+        description: 🔄 Whether to perform an update
+        required: false
+        default: 'false'
 jobs:
   autocraw:
     runs-on: ubuntu-latest
-    # if: github.event.repository.owner.id == github.event.sender.id
 
     strategy:
       matrix:
@@ -51,16 +51,14 @@ jobs:
           cd packages/core
           echo "🚀 Building..."
           pnpm run build
-        continue-on-error: true
       - name: Run crawlAirbnb 🚀
         run: |
           cd packages/core
           echo "🔥 Running crawlAirbnb..."
           node ./dist/index.cjs crawlAirbnb
-        if: ${{ needs.build.result == 'success' }}
       - name: Update 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: main
           folder: .
-        if: ${{ env.update == 'true' && needs.build.result == 'success' }}
+        if: ${{ github.event.inputs.update == 'true' }}
