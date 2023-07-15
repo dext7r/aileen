@@ -1,0 +1,58 @@
+{
+  "name": "aileen",
+  "version": "1.0.0",
+  "description": "Aileen is a powerful library for web scraping and automation tasks, built on top of Puppeteer. It provides a simplified and intuitive API for interacting with web pages, extracting data, and automating workflows.",
+  "author": {
+    "name": "h7ml",
+    "mail": "h7ml@qq.com",
+    "github": "https://github.com/h7ml"
+  },
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "https://github.com/h7ml/aileen/tree/main/LICENSE"
+    }
+  ],
+  "homepage": "https://github.com/h7ml/aileen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h7ml/aileen"
+  },
+  "bugs": {
+    "url": "https://github.com/h7ml/aileen/issues"
+  },
+  "keywords": [
+    "aileen",
+    "puppeteer",
+    "web scraping",
+    "automation",
+    "headless browser",
+    "web testing"
+  ],
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-basic": "^0.39.3",
+    "@antfu/eslint-config-ts": "^0.39.3",
+    "@femm/prettier": "^1.1.0",
+    "@femm/verify-commit": "^1.0.1",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.7.0",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  }
+}

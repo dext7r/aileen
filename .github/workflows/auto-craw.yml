@@ -1,0 +1,52 @@
+name: auto-craw
+permissions:
+  contents: write
+on:
+  watch:
+    types: [starred]
+  schedule:
+    # 执行两次 避免偶尔执行失败的情况出现
+    - cron: '15 22 * * *'
+    - cron: '30 23 * * *'
+  push:
+    branches:
+      - main
+      - master
+
+  # pull_request:
+  # branches: [ master,main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # if: github.event.repository.owner.id == github.event.sender.id
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: false
+      - name: Install dependencies
+        run: pnpm install
+      - name: run script
+        env:
+          isLog: true
+          storeDir: ./
+        run: |
+          cd packages/core
+          pnpm run start
+      - name: 更新数据
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: main
+          folder: .
