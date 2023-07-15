@@ -72,7 +72,8 @@
     "watch": "nodemon --watch src --exec \"npm run start\"",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "node dist/test.js"
   },
   "dependencies": {
     "axios": "^1.4.0",
