@@ -1,6 +1,8 @@
-<h1 align="center">Welcome to @aileen/core 👋</h1>
+<h1 align="center">Welcome to @h7ml/aileen 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://www.npmjs.com/package/@h7ml/aileen" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/@h7ml/aileen.svg">
+  </a>
   <img src="https://img.shields.io/badge/node-%3E%3D14-blue.svg" />
   <img src="https://img.shields.io/badge/npm-%3E%3D7.0.0-blue.svg" />
   <a href="https://github.com/h7ml/aileen/tree/main/packages/core#readme" target="_blank">
@@ -10,11 +12,13 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://github.com/h7ml/aileen/tree/main/packages/core/blob/master/LICENSE" target="_blank">
-    <img alt="License: Apache--2.0" src="https://img.shields.io/github/license/h7ml/@aileen/core" />
+    <img alt="License: Apache--2.0" src="https://img.shields.io/github/license/h7ml/aileen" />
   </a>
 </p>
 
-> A wrapper library for Puppeteer, providing simplified and convenient APIs for web scraping and automation tasks.
+> A wrapper library for Puppeteer, providing simplified and convenient APIs for web scraping and automation tasks.一个为 Puppeteer 提供封装的库，提供简化和便捷的 API，用于进行网络爬虫和自动化任务的开发。
+
+<a href="README_CN.md">中文版</a> | <a href="/">English Version</a>
 
 ### 🏠 [Homepage](https://github.com/h7ml/aileen/tree/main/packages/core)
 

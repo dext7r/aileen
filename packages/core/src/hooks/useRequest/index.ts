@@ -31,10 +31,6 @@ export const useRequest: HttpInstance = async (url, options = {}) => {
   mergedOptions.headers.Cookie = options.headers?.Cookie || ''
   mergedOptions.headers.referer = extractOrigin(url)
 
-  try {
-    const response = await axios(url, mergedOptions)
-    return response.data
-  } catch (error) {
-    throw error
-  }
+  const response = await axios(url, mergedOptions)
+  return response.data
 }

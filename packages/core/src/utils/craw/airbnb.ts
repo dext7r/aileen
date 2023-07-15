@@ -7,8 +7,8 @@ const storeDirs = path.join(evConfig.store.storeDirs ?? __dirname, 'upload')
 
 const options: CrawlHooksOptions = {
   maxRetry: 3,
-  intervalTime: { max: 300, min: 200 },
-  targets: ['https://www.airbnb.cn/s/experiences'],
+  intervalTime: { max: 3000, min: 2000 },
+  targets: ['https://www.airbnb.cn/s/experiences', 'https://www.airbnb.cn/s/plus_homes'],
   viewport: { width: 1920, height: 1080 },
   storeDirs,
   crawlPage: { launchBrowser: { headless: true } },
@@ -20,6 +20,7 @@ const callback: CrawlHooksCallback = (count, stopPolling, results) => {
     stopPolling()
     process.exit(0) // 退出程序
   }
+  return results
 }
 
 export async function crawlAirbnb(): Promise<CrawlPageResult[]> {

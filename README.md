@@ -14,7 +14,9 @@
   </a>
 </p>
 
-> Aileen is a powerful library for web scraping and automation tasks, built on top of Puppeteer. It provides a simplified and intuitive API for interacting with web pages, extracting data, and automating workflows.
+> Aileen is a powerful library for web scraping and automation tasks, built on top of Puppeteer. It provides a simplified and intuitive API for interacting with web pages, extracting data, and automating workflows. Aileen 是一个基于 Puppeteer 的强大的网络爬虫和自动化任务库。它为与网页交互、提取数据和自动化工作流程提供了简化和直观的 API。
+
+<a href="README_CN.md">中文版</a> | <a href="/">English Version</a>
 
 ### 🏠 [Homepage](https://github.com/h7ml/aileen)
 

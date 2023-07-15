@@ -13,11 +13,11 @@ on:
       - main
       - master
 
-  # pull_request:
-  # branches: [ master,main ]
+env:
+  update: ${{ secrets.update }}
 
 jobs:
-  build:
+  autocraw:
     runs-on: ubuntu-latest
     # if: github.event.repository.owner.id == github.event.sender.id
 
@@ -27,6 +27,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Cache dependencies 📦
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
       - name: Use Node.js 16.x 🚀
         uses: actions/setup-node@v3
         with:
@@ -38,15 +45,22 @@ jobs:
           run_install: false
       - name: Install dependencies 🚀
         run: pnpm install
-      - name: run script
-        env:
-          isLog: true
-          storeDir: ./
+      - name: Build 🏗️
         run: |
           cd packages/core
-          pnpm run dev
-      - name: update  🚀
+          echo "🚀 Building..."
+          pnpm run build
+        continue-on-error: true
+      - name: Run crawlAirbnb 🚀
+        run: |
+          cd packages/core
+          echo "🔥 Running crawlAirbnb..."
+          node ./dist/index.cjs crawlAirbnb
+        needs: Build
+        if: needs.Build.result == 'success'
+      - name: Update 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           branch: main
           folder: .
+        if: env.update == 'true' && success()

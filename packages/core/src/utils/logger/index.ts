@@ -1,11 +1,14 @@
-import log4js, { Layout, LoggingEvent } from 'log4js'
-import chalk, { Chalk } from 'chalk'
+import path from 'node:path'
+import type { LoggingEvent } from 'log4js'
+import log4js from 'log4js'
+import type { ChalkInstance } from 'chalk'
+import chalk from 'chalk'
 import { formatDate } from '@/utils'
-import path from 'path'
 import { evConfig } from '@/config'
 
 type LevelEmoji = Record<string, string>
-type LevelColor = Record<string, Chalk>
+//  unused-imports/no-unused-vars
+type LevelColor = Record<string, ChalkInstance>
 
 const levelEmoji: LevelEmoji = {
   TRACE: '🔍',
@@ -53,7 +56,7 @@ log4js.configure({
 export const logger = log4js.getLogger()
 
 // Custom layout for colored log output
-log4js.addLayout('coloredLayout', (config: Layout): ((logEvent: LoggingEvent) => string) => {
+log4js.addLayout('coloredLayout', (): ((logEvent: LoggingEvent) => string) => {
   return (logEvent: LoggingEvent): string => {
     const level = logEvent.level.toString()
     const emoji = levelEmoji[level] || ''

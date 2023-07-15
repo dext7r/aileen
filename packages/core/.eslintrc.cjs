@@ -4,5 +4,6 @@ module.exports = {
   rules: {
     'new-cap': 'off',
     'no-console': 'off',
+    'antfu/if-newline': 'off',
   },
 }
