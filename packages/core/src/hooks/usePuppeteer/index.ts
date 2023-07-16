@@ -20,8 +20,8 @@ export class usePuppeteer {
 
   public async launch(options?: LaunchOptions): Promise<void> {
     const launchOptions: LaunchOptions = {
-      ignoreDefaultArgs: ['--headless'],
-      headless: false,
+      // ignoreDefaultArgs: ['--headless'],
+      headless: 'new',
       ...options,
     }
 
