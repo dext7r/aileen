@@ -1,8 +1,8 @@
 import * as http from 'node:http'
 import type { Browser, ElementHandle, HTTPResponse, Page } from 'puppeteer'
 
-import { expect } from 'expect-puppeteer'
 import type { Cookie, FormattedCookie } from './index.d'
+import { expect } from './expect'
 
 /**
  * 格式化 Cookie
@@ -62,8 +62,9 @@ export async function assertElementHasText(
   assertText: string,
 ): Promise<void> {
   await page.waitForSelector(elementSelector, { visible: true })
-  await expect(page).toMatchElement(elementSelector, { timeout: 15000 })
-  await expect(page).toMatch(assertText)
+  await new expect(page).toMatchElement(elementSelector, { timeout: 15000 })
+
+  await new expect(page).toMatch(assertText)
 }
 
 /**
@@ -74,8 +75,8 @@ export async function assertElementHasText(
  */
 export async function clickElementByText(page: Page, tag: string, text: string): Promise<void> {
   await delay(500)
-  await expect(page).toMatch(text, { timeout: 5000 })
-  await expect(page).toClick(tag, { text })
+  await new expect(page).toMatch(text)
+  await new expect(page).toClickByText(tag, text)
   await delay(500)
 }
 
