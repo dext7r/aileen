@@ -34,7 +34,12 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start:core": "pnpm --filter @aileen/core start",
+    "dev:hooks": "pnpm --filter @aileen/hooks dev",
+    "test:commonjs": "pnpm --filter @aileen/commonjs start",
+    "test:esmodules": "pnpm --filter @aileen/esmodules start",
+    "test": "pnpm --filter @aileen/* start"
   },
   "devDependencies": {
     "@antfu/eslint-config-basic": "^0.39.3",
